@@ -98,6 +98,34 @@ public class patient {
                     break;
                 case 3:
                     System.out.println("Search patients");
+                    System.out.println("enter patient id to search");
+                    pid=sc.nextInt();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/hospitaldb1","root","");
+                        String sql = "SELECT  `name`, `place`, `phone`, `age`, `symptom`, `doctorname` FROM `patient` WHERE `pid`="+String.valueOf(pid);
+                        Statement stmt=con.createStatement();
+                        ResultSet rs=stmt.executeQuery(sql);
+                        while ((rs.next())) {
+                            String getname = rs.getString(("name"));
+                            String getplace = rs.getString(("place"));
+                            String getphone = rs.getString(("phone"));
+                            String getage = rs.getString(("age"));
+                            String getsymptom = rs.getString(("symptom"));
+                            String getdoctorname = rs.getString(("doctorname"));
+                            System.out.println("Name=" + getname);
+                            System.out.println("place=" + getplace);
+                            System.out.println("phone=" + getphone);
+                            System.out.println("age =" + getage);
+                            System.out.println("symptom=" + getsymptom);
+                            System.out.println("doctorname=" + getdoctorname);
+                            System.out.println("\n");
+
+                        }
+                    }
+                    catch (Exception e){
+                        System.out.println((e));
+                    }
                     break;
                 case 4:
                     System.out.println("Update patients");
