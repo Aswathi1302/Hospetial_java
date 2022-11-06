@@ -157,6 +157,19 @@ public class patient {
                     break;
                 case 5:
                     System.out.println("Delete patients");
+                    System.out.println("Enter the Patient id:");
+                    pid=sc.nextInt();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/hospitaldb1","root","");
+                        String sql="DELETE FROM `patient` WHERE `pid`="+String.valueOf(pid);
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(sql);
+                        System.out.println("deleted successfully.....");
+                    }
+                    catch (Exception e){
+                        System.out.println((e));
+                    }
                     break;
                 case 6:
                     System.exit(0);
